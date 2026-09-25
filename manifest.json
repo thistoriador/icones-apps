@@ -2,11 +2,15 @@
   "name": "PCB SP | Recrutamento e Circulismo",
   "short_name": "PCB SP",
   "description": "Recrutamento e Circulismo - PCB São Paulo",
-  "start_url": "./index.html",
+
+  "start_url": "./app.html",
   "scope": "./",
+
   "display": "standalone",
+
   "background_color": "#c90c14",
   "theme_color": "#c90c14",
+
   "icons": [
     {
       "src": "./icone-recrutamento.png",
