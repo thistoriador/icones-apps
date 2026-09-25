@@ -32,28 +32,21 @@
       margin: 0;
       padding: 0;
       width: 100%;
-      height: 100%;
+      min-height: 100%;
       font-family: Arial, Helvetica, sans-serif;
       background: #c90c14;
     }
 
-    /*
-      Começa escondido.
-      Assim o botão não aparece por um instante
-      antes de detectarmos se estamos no app.
-    */
     body {
-      display: none;
+      min-height: 100vh;
+      display: flex;
       align-items: center;
       justify-content: center;
-    }
-
-    body.ready {
-      display: flex;
+      padding: 20px;
     }
 
     .box {
-      width: 90%;
+      width: 100%;
       max-width: 420px;
       background: #ffffff;
       border-radius: 20px;
@@ -72,15 +65,25 @@
 
     h1 {
       margin: 0 0 8px;
-      font-size: 25px;
+      font-size: 27px;
       color: #c90c14;
     }
 
-    p {
-      margin: 0 0 22px;
-      font-size: 16px;
-      line-height: 1.45;
-      color: #444;
+    .subtitulo {
+      margin: 0 0 25px;
+      font-size: 18px;
+      line-height: 1.4;
+      color: #444444;
+    }
+
+    .instrucao {
+      margin: 0 0 20px;
+      padding: 14px;
+      background: #f3f3f3;
+      border-radius: 12px;
+      font-size: 15px;
+      line-height: 1.5;
+      color: #333333;
     }
 
     .btn {
@@ -93,48 +96,6 @@
       font-size: 17px;
       font-weight: bold;
       text-decoration: none;
-    }
-
-    /*
-      MODO APLICATIVO
-      Quando aberto pelo ícone instalado.
-    */
-
-    body.app-mode {
-      background: #c90c14;
-    }
-
-    body.app-mode .box {
-      background: transparent;
-      box-shadow: none;
-      padding: 20px;
-    }
-
-    body.app-mode .logo {
-      width: 170px;
-      height: 170px;
-      margin-bottom: 22px;
-    }
-
-    body.app-mode h1 {
-      color: #ffffff;
-      font-size: 30px;
-      margin-bottom: 8px;
-    }
-
-    body.app-mode p {
-      color: #ffffff;
-      font-size: 18px;
-      margin-bottom: 0;
-    }
-
-    /*
-      No aplicativo instalado,
-      o botão nunca aparece.
-    */
-
-    body.app-mode .btn {
-      display: none;
     }
   </style>
 </head>
@@ -150,9 +111,15 @@
 
     <h1>PCB SP</h1>
 
-    <p>
+    <p class="subtitulo">
       Recrutamento e Circulismo
     </p>
+
+    <div class="instrucao">
+      Para instalar no celular, abra o menu
+      <strong>⋮</strong> do Chrome e escolha
+      <strong>Instalar app</strong>.
+    </div>
 
     <a
       class="btn"
@@ -161,47 +128,6 @@
     </a>
 
   </div>
-
-  <script>
-    const appInstalado =
-      window.matchMedia('(display-mode: standalone)').matches ||
-      window.navigator.standalone === true;
-
-    if (appInstalado) {
-
-      /*
-        Aberto pelo ícone PCB SP:
-        prepara primeiro a tela de abertura.
-      */
-
-      document.body.classList.add('app-mode');
-      document.body.classList.add('ready');
-
-      /*
-        Depois entra automaticamente
-        no aplicativo real.
-      */
-
-      setTimeout(function () {
-
-        window.location.replace(
-          "https://script.google.com/macros/s/AKfycbxX32EywSxmIoUIHgIEF0Xsv9Ed9TZhHhKE2ObPolExAnrxKrHwXkim9ufx5eVET4em/exec"
-        );
-
-      }, 900);
-
-    } else {
-
-      /*
-        Aberto pelo Chrome:
-        mostra normalmente a página
-        para instalação/acesso.
-      */
-
-      document.body.classList.add('ready');
-
-    }
-  </script>
 
 </body>
 </html>
