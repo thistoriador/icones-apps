@@ -85,13 +85,35 @@
       font-weight: bold;
       text-decoration: none;
     }
+
+    /* Tela de abertura do aplicativo */
+    body.app-mode .box {
+      background: transparent;
+      box-shadow: none;
+    }
+
+    body.app-mode .logo {
+      width: 170px;
+      height: 170px;
+      margin-bottom: 20px;
+    }
+
+    body.app-mode h1 {
+      color: #ffffff;
+      font-size: 30px;
+    }
+
+    body.app-mode p {
+      color: #ffffff;
+      font-size: 18px;
+    }
+
+    body.app-mode .btn {
+      display: none;
+    }
   </style>
 </head>
-<script>
-  setTimeout(function () {
-    window.location.href = "https://script.google.com/macros/s/AKfycbxX32EywSxmIoUIHgIEF0Xsv9Ed9TZhHhKE2ObPolExAnrxKrHwXkim9ufx5eVET4em/exec";
-  }, 800);
-</script>
+
 <body>
 
   <div class="box">
@@ -110,10 +132,30 @@
     <a
       class="btn"
       href="https://script.google.com/macros/s/AKfycbxX32EywSxmIoUIHgIEF0Xsv9Ed9TZhHhKE2ObPolExAnrxKrHwXkim9ufx5eVET4em/exec">
-      ABRIR APLICATIVO
+      ENTRAR NO APLICATIVO
     </a>
 
   </div>
+
+  <script>
+    const appInstalado =
+      window.matchMedia('(display-mode: standalone)').matches ||
+      window.navigator.standalone === true;
+
+    if (appInstalado) {
+
+      // Modo aplicativo: transforma a página em tela de abertura
+      document.body.classList.add('app-mode');
+
+      // Depois abre automaticamente o aplicativo real
+      setTimeout(function () {
+        window.location.replace(
+          "https://script.google.com/macros/s/AKfycbxX32EywSxmIoUIHgIEF0Xsv9Ed9TZhHhKE2ObPolExAnrxKrHwXkim9ufx5eVET4em/exec"
+        );
+      }, 900);
+
+    }
+  </script>
 
 </body>
 </html>
