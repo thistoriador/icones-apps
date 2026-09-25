@@ -37,10 +37,19 @@
       background: #c90c14;
     }
 
+    /*
+      Começa escondido.
+      Assim o botão não aparece por um instante
+      antes de detectarmos se estamos no app.
+    */
     body {
-      display: flex;
+      display: none;
       align-items: center;
       justify-content: center;
+    }
+
+    body.ready {
+      display: flex;
     }
 
     .box {
@@ -86,27 +95,43 @@
       text-decoration: none;
     }
 
-    /* Tela de abertura do aplicativo */
+    /*
+      MODO APLICATIVO
+      Quando aberto pelo ícone instalado.
+    */
+
+    body.app-mode {
+      background: #c90c14;
+    }
+
     body.app-mode .box {
       background: transparent;
       box-shadow: none;
+      padding: 20px;
     }
 
     body.app-mode .logo {
       width: 170px;
       height: 170px;
-      margin-bottom: 20px;
+      margin-bottom: 22px;
     }
 
     body.app-mode h1 {
       color: #ffffff;
       font-size: 30px;
+      margin-bottom: 8px;
     }
 
     body.app-mode p {
       color: #ffffff;
       font-size: 18px;
+      margin-bottom: 0;
     }
+
+    /*
+      No aplicativo instalado,
+      o botão nunca aparece.
+    */
 
     body.app-mode .btn {
       display: none;
@@ -144,15 +169,36 @@
 
     if (appInstalado) {
 
-      // Modo aplicativo: transforma a página em tela de abertura
-      document.body.classList.add('app-mode');
+      /*
+        Aberto pelo ícone PCB SP:
+        prepara primeiro a tela de abertura.
+      */
 
-      // Depois abre automaticamente o aplicativo real
+      document.body.classList.add('app-mode');
+      document.body.classList.add('ready');
+
+      /*
+        Depois entra automaticamente
+        no aplicativo real.
+      */
+
       setTimeout(function () {
+
         window.location.replace(
           "https://script.google.com/macros/s/AKfycbxX32EywSxmIoUIHgIEF0Xsv9Ed9TZhHhKE2ObPolExAnrxKrHwXkim9ufx5eVET4em/exec"
         );
+
       }, 900);
+
+    } else {
+
+      /*
+        Aberto pelo Chrome:
+        mostra normalmente a página
+        para instalação/acesso.
+      */
+
+      document.body.classList.add('ready');
 
     }
   </script>
